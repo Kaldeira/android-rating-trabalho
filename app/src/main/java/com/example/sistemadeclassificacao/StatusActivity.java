@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class StatusActivity extends AppCompatActivity {
     TextView txt_status;
     RatingBar rating_bar;
+    Button voltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class StatusActivity extends AppCompatActivity {
 
         txt_status = (TextView)findViewById(R.id.tvstatus);
         rating_bar = (RatingBar)findViewById(R.id.rtbvotacao);
+        voltar = (Button)findViewById(R.id.btvoltar);
 
         String status = getIntent().getStringExtra("status");
         float rating = getIntent().getFloatExtra("rating", 0);
@@ -34,5 +36,13 @@ public class StatusActivity extends AppCompatActivity {
         rating_bar.setRating(rating);
         rating_bar.setIsIndicator(true);
         txt_status.setText("Status: " + status);
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StatusActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
